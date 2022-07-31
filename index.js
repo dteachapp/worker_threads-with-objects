@@ -9,9 +9,9 @@ let threadsArray = []
 
 for (let i = 0; i < 10; i++) {
     workerPromise = new Promise((resolve, reject) => {
-        const worker = new Worker('./worker.js', { workerData: { obj: derived } });
+        const worker = new Worker('./worker.js');
         let time = 1500
-        worker.postMessage({ time });
+        worker.postMessage({ time , derived});
         worker.on('message', async (result) => {
             resolve(result)
         });
